@@ -1868,7 +1868,7 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
             borderRadius: BorderRadius.circular(3),
           ),
           onPressed: () {
-            Navigator.maybeOf(context)?.maybePop(shouldAllowConfirm?p.selectedAssets:[]);
+            Navigator.maybeOf(context)?.maybePop(shouldAllowConfirm?p.selectedAssets:List<AssetEntity>.empty());
           },
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           child: ScaleText(
