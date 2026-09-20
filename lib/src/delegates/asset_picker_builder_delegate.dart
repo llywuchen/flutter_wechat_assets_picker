@@ -1867,17 +1867,15 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),
           ),
-          onPressed: shouldAllowConfirm
-              ? () {
-                  Navigator.maybeOf(context)?.maybePop(p.selectedAssets);
-                }
-              : null,
+          onPressed: () {
+            Navigator.maybeOf(context)?.maybePop(shouldAllowConfirm?p.selectedAssets:[]);
+          },
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           child: ScaleText(
             isSelectedNotEmpty && !isSingleAssetMode
                 ? '${textDelegate.confirm}'
                     ' (${p.selectedAssets.length}/${p.maxAssets})'
-                : textDelegate.confirm,
+                : (!shouldAllowConfirm ?'跳过':textDelegate.confirm),
             style: TextStyle(
               color: shouldAllowConfirm
                   ? theme.textTheme.bodyLarge?.color
